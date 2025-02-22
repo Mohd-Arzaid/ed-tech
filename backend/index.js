@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import connectDb from "./utils/db.js";
+import userRoute from "./routes/user.route.js";
 
 dotenv.config();
 const app = express();
@@ -22,6 +23,9 @@ app.get("/", (req, res) =>
     message: "Server is up and running ...",
   })
 );
+
+// Api's
+app.use("/api/v1/auth",userRoute);
 
 app.listen(PORT, async () => {
   connectDb();
